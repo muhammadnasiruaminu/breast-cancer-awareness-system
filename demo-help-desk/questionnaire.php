@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'connection.php';
+
   if (isset($_POST['submit'])) {
     $id = $_SESSION['id'];
     $gender = $_POST['gender'];
@@ -17,6 +18,12 @@ include 'connection.php';
         header('Location: dashboard.php?sussess=Question Successfully submitted');
       }
   }
+
+  $sqlQuery2 = "SELECT * FROM disease";
+  $result2 = mysqli_query($conn, $sqlQuery2);
+
+  $row_Recordset1 = mysqli_fetch_assoc($result2);
+
 ?>
 
 
@@ -30,7 +37,7 @@ include 'connection.php';
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title -->
-  <title>Questionnaire</title>
+  <title>Breast Cancer Risk Assessment</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="../favicon.ico">
@@ -44,86 +51,41 @@ include 'connection.php';
 
   <!-- CSS Front Template -->
   <link rel="stylesheet" href="../assets/css/theme.minc619.css?v=1.0">
+
+  <style>
+    /* body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    } */
+    /* .question {
+      margin-bottom: 20px;
+    } */
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      background-color: #f9f9f9;
+    }
+    .hidden {
+      display: none;
+    }
+    .progress {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 10px;
+    }
+  </style>
+  
 </head>
 
 <body>
   <!-- ========== HEADER ========== -->
   <header id="header" class="navbar navbar-expand-lg navbar-end navbar-light bg-white">
     <!-- Topbar -->
-    <div class="container navbar-topbar">
-      <nav class="js-mega-menu navbar-nav-wrap">
-        <!-- Toggler -->
-        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#topbarNavDropdown" aria-controls="topbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="d-flex justify-content-between align-items-center">
-            <span class="navbar-toggler-text">Topbar</span>
-
-            <span class="navbar-toggler-default">
-              <i class="bi-chevron-down ms-2"></i>
-            </span>
-            <span class="navbar-toggler-toggled">
-              <i class="bi-chevron-up ms-2"></i>
-            </span>
-          </span>
-        </button>
-        <!-- End Toggler -->
-
-        <div id="topbarNavDropdown" class="navbar-nav-wrap-collapse collapse navbar-collapse navbar-topbar-collapse">
-          <div class="navbar-toggler-wrapper">
-            <div class="navbar-topbar-toggler d-flex justify-content-between align-items-center">
-              <span class="navbar-toggler-text small">Topbar</span>
-
-              <!-- Toggler -->
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topbarNavDropdown" aria-controls="topbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="bi-x"></i>
-              </button>
-              <!-- End Toggler -->
-            </div>
-          </div>
-        </div>
-      </nav>
-    </div>
-    <!-- End Topbar -->
-
     <div class="container">
-      <nav class="navbar-nav-wrap">
-        <!-- Default Logo -->
-        <a class="navbar-brand" href="index.html" aria-label="Front">
-          <img class="navbar-brand-logo" src="../assets/svg/logos/logox.svg" alt="Logo">
-        </a>
-        <!-- End Default Logo -->
-
-        <!-- Toggler -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-default">
-            <i class="bi-list"></i>
-          </span>
-          <span class="navbar-toggler-toggled">
-            <i class="bi-x"></i>
-          </span>
-        </button>
-        <!-- End Toggler -->
-
-        <!-- Collapse -->
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="dashboard.php">Home Page</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="questionnaire.php">Questionnaire</a>
-            </li>
-            
-            <li class="nav-item">
-              <button class="btn btn-primary btn-transition" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Ask!</button>
-            </li>
-
-            <li class="nav-item">
-              <a href="logout.php" class="btn btn-secondary">Logout</a>
-            </li>
-          </ul>
-        </div>
-        <!-- End Collapse -->
-      </nav>
+       <?php include 'header-nav.php' ?>
     </div>
   </header>
 
@@ -132,100 +94,88 @@ include 'connection.php';
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
     <!-- Search -->
-    <div class="bg-light" style="background-image: url(../assets/svg/components/wave-pattern-light.svg);">
-      <div class="container py-4">
-        <div class="w-lg-75 mx-lg-auto">
-          <figure>
-              <blockquote class="blockquote blockquote-left-border">
-                <p>Dear <?php echo $_SESSION['emailAddress']; ?>, welcome to</p>
-              </blockquote>
-              <figcaption class="blockquote-footer">
-                <span class="blockquote-footer-source">HIV and AIDS awareness<cite title="Source Title">System.</cite></span>
-              </figcaption>
-            </figure>
-        </div>      </div>
-    </div>
+    <?php include 'welcome-msg.php' ?>
     <!-- End Search -->
-
-    <!-- Breadcrumb -->
-    <div class="container py-5">
-      <div class="w-lg-75 mx-lg-auto">
-        <!-- Breadcrumb -->
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item">
-              <a href="index.html">Front Help Center</a>
-            </li>
-            <li class="breadcrumb-item">
-              <a href="listing.html">Getting Started</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">What's HIV and AIDs?</li>
-          </ol>
-        </nav>
-        <!-- End Breadcrumb -->
-      </div>
-    </div>
-    <!-- End Breadcrumb -->
-
+    <br>
     <!-- Card -->
     <div class="container content-space-b-2">
       <div class="w-lg-75 mx-lg-auto">
         <!-- Card -->
         <div class="card card-bordered p-4 p-md-7">
-          <h1 class="card-title h2">What's HIV & AIDs matters</h1>
-          <p class="card-text">You can thick any of the questions applicable to you in other to know if you are at risk of contacting the disease<i>(virus)</i>.</p>
+        <h1 class="card-title h2">Breast Cancer Awareness Tool</h1>
+          <p>Answer the following questions to assess your risk and receive personalized prevention tips.</p>
 
-          <ul class="list-py-1">
-            <form method="POST">
-              <li>
-                <span class="fw-semi-bold">What is your gender: </span> 
-                <label>Male</label><input type="radio" value="M" name="gender"> <label>Female</label><input type="radio" name="gender" value="F">
-              </li>
+          <!-- Progress Tracker -->
+          <div class="progressm">
+            Progress: <span id="currentStep">1</span>/<span id="totalSteps">8</span>
+          </div>
 
-              <li>
-                <span class="fw-semi-bold">Have you ever shared injection drug needles: </span> 
-                <input type="radio" name="needles" value="yes">
-                <label>yes</label>
-                <input type="radio" name="needles" value="no">
-                <label>No</label>
-              </li>
+          <form id="riskForm">
+            <!-- Questions -->
+            <div id="step-1" class="question">
+              <label>What is your age?</label><br>
+              <input type="radio" name="age" value="0"> Under 40<br>
+              <input type="radio" name="age" value="1"> 40-49<br>
+              <input type="radio" name="age" value="2"> 50+
+            </div>
 
-              <li>
-                <span class="fw-semi-bold">Have you ever had sex without condom: </span> 
-                <input type="radio" name="condom" value="yes">
-                <label>yes</label>
-                <input type="radio" name="condom" value="no">
-                <label>No</label>
-              </li>
+            <div id="step-2" class="question hidden">
+              <label>Have you reached menopause?</label><br>
+              <input type="radio" name="menopause" value="0"> No<br>
+              <input type="radio" name="menopause" value="1"> Yes
+            </div>
 
-              <li>
-                <span class="fw-semi-bold">Have you ever had sexually tranmitted disease, like chlamydia or gonorhea: </span> 
-                <input type="radio" name="sexTransmitted" value="yes">
-                <label>yes</label>
-                <input type="radio" name="sexTransmitted" value="no">
-                <label>No</label>
-              </li>
+            <div id="step-3" class="question hidden">
+              <label>Do you have a first-degree relative diagnosed with breast cancer?</label><br>
+              <input type="radio" name="familyHistory" value="3"> Yes<br>
+              <input type="radio" name="familyHistory" value="0"> No
+            </div>
 
-              <li>
-                <span class="fw-semi-bold">Have you ever received a blood transfussion: </span> 
-                <input type="radio" name="bloodTransmitted" value="yes">
-                <label>yes</label>
-                <input type="radio" name="bloodTransmitted" value="no">
-                <label>No</label>
-              </li>
+            <div id="step-4" class="question hidden">
+              <label>Is there a history of ovarian cancer in your family?</label><br>
+              <input type="radio" name="ovarianHistory" value="3"> Yes<br>
+              <input type="radio" name="ovarianHistory" value="0"> No
+            </div>
 
-              <li>
-                <span class="fw-semi-bold">Was the blood screened: </span> 
-                <input type="radio" name="bloodScreened" value="yes">
-                <label>yes</label>
-                <input type="radio" name="bloodScreened" value="no">
-                <label>No</label>
-              </li>
+            <div id="step-5" class="question hidden">
+              <label>Do you exercise regularly (at least 150 minutes per week)?</label><br>
+              <input type="radio" name="exercise" value="-1"> Yes<br>
+              <input type="radio" name="exercise" value="0"> No
+            </div>
 
-              <button class="btn btn-secondary mt-3" name="submit">submit</button>
-            </form>
-            
-          </ul>
+            <div id="step-6" class="question hidden">
+              <label>Do you consume alcohol regularly?</label><br>
+              <input type="radio" name="alcohol" value="1"> Yes<br>
+              <input type="radio" name="alcohol" value="0"> No
+            </div>
+
+            <div id="step-7" class="question hidden">
+              <label>Have you noticed unusual changes in your breasts (e.g., lumps, pain, or discharge)?</label><br>
+              <input type="radio" name="symptoms" value="2"> Yes<br>
+              <input type="radio" name="symptoms" value="0"> No
+            </div>
+
+            <div id="step-8" class="question hidden">
+              <label>Have you undergone hormone replacement therapy?</label><br>
+              <input type="radio" name="hormoneTherapy" value="2"> Yes<br>
+              <input type="radio" name="hormoneTherapy" value="0"> No
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div>
+              <button type="button" id="prevButton" class="btn btn-primary hidden" onclick="prevStep()">Previous</button>
+              <button type="button" class="btn btn-primary" id="nextButton" onclick="nextStep()">Next</button>
+            </div>
+          </form>
+
+          <!-- Results Section -->
+          <div id="result" class="result hidden">
+            <h2>Your Results</h2>
+            <p id="riskLevel"></p>
+            <p id="recommendations"></p>
+            <p><strong>Note:</strong> This tool provides general guidance. Always consult a healthcare professional for a detailed evaluation.</p>
+          </div>
+
         </div>
         <!-- End Card -->
       </div>
@@ -243,7 +193,7 @@ include 'connection.php';
 
       <!-- Copyright -->
       <div class="w-md-85 text-lg-center mx-lg-auto">
-        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Mahmud.</p>
+        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Najat</p>
       </div>
       <!-- End Copyright -->
     </div>
@@ -484,6 +434,87 @@ include 'connection.php';
       new HSGoTo('.js-go-to')
     })()
   </script>
+
+<script>
+    let currentStep = 1;
+    const totalSteps = 8;
+
+    // Update progress display
+    function updateProgress() {
+      document.getElementById("currentStep").innerText = currentStep;
+      document.getElementById("totalSteps").innerText = totalSteps;
+    }
+
+    // Show the next question
+    function nextStep() {
+      if (currentStep < totalSteps) {
+        document.getElementById(`step-${currentStep}`).classList.add("hidden");
+        currentStep++;
+        document.getElementById(`step-${currentStep}`).classList.remove("hidden");
+        document.getElementById("prevButton").classList.remove("hidden");
+      }
+
+      if (currentStep === totalSteps) {
+        document.getElementById("nextButton").innerText = "Submit";
+        document.getElementById("nextButton").onclick = calculateRisk;
+      }
+      updateProgress();
+    }
+
+    // Show the previous question
+    function prevStep() {
+      if (currentStep > 1) {
+        document.getElementById(`step-${currentStep}`).classList.add("hidden");
+        currentStep--;
+        document.getElementById(`step-${currentStep}`).classList.remove("hidden");
+      }
+
+      if (currentStep === 1) {
+        document.getElementById("prevButton").classList.add("hidden");
+      }
+      document.getElementById("nextButton").innerText = "Next";
+      document.getElementById("nextButton").onclick = nextStep;
+
+      updateProgress();
+    }
+
+    // Calculate risk and show results
+    function calculateRisk() {
+      let score = 0;
+      const form = document.forms["riskForm"];
+
+      // Collect all inputs
+      score += parseInt(form["age"].value || 0);
+      score += parseInt(form["menopause"].value || 0);
+      score += parseInt(form["familyHistory"].value || 0);
+      score += parseInt(form["ovarianHistory"].value || 0);
+      score += parseInt(form["exercise"].value || 0);
+      score += parseInt(form["alcohol"].value || 0);
+      score += parseInt(form["symptoms"].value || 0);
+      score += parseInt(form["hormoneTherapy"].value || 0);
+
+      // Display results
+      const resultDiv = document.getElementById("result");
+      const riskLevel = document.getElementById("riskLevel");
+      const recommendations = document.getElementById("recommendations");
+
+      if (score <= 3) {
+        riskLevel.innerText = "Your risk is LOW.";
+        recommendations.innerText = "Maintain a healthy lifestyle and stay informed about breast health.";
+      } else if (score <= 6) {
+        riskLevel.innerText = "Your risk is MODERATE.";
+        recommendations.innerText = "Schedule regular screenings and consider lifestyle changes.";
+      } else {
+        riskLevel.innerText = "Your risk is HIGH.";
+        recommendations.innerText = "Consult a healthcare provider for genetic testing or preventive strategies.";
+      }
+
+      resultDiv.classList.remove("hidden");
+      document.getElementById("riskForm").classList.add("hidden");
+      updateProgress();
+    }
+  </script>
+
 </body>
 
 <!-- Mirrored from htmlstream.com/preview/front-v4.2/html/demo-help-desk/article-overview.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 02 Aug 2022 18:21:26 GMT -->

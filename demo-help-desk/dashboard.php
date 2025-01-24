@@ -103,43 +103,10 @@
 
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
-    <!-- Search -->
-    <div class="bg-light" style="background-image: url('../assets/svg/components/wave-pattern-light.svg');">
-      <div class="container py-4">
-        <div class="w-lg-75 mx-lg-auto">
-          <figure>
-              <blockquote class="blockquote blockquote-left-border">
-                <p>Dear <?php echo $_SESSION['firstname']; ?>, welcome to <span class="">Breast Cancer Awareness System</span></p>
-              </blockquote>
-              <figcaption class="blockquote-footer">
-                <span class="blockquote-footer-source"><cite title="Source Title">Breast Cancer Awareness System</cite></span>
-              </figcaption>
-            </figure>
-        </div>
-      </div>
-    </div>
-    <!-- End Search -->
-
-    <!-- Breadcrumb -->
-    <div class="container py-5">
-      <div class="w-lg-75 mx-lg-auto">
-        <!-- Breadcrumb -->
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item">
-              <a href="index.html">Front Help Center</a>
-            </li>
-            <li class="breadcrumb-item">
-              <a href="listing.html">Getting Started</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">What's HIV and AIDs?</li>
-          </ol>
-        </nav>
-        <!-- End Breadcrumb -->
-      </div>
-    </div>
-    <!-- End Breadcrumb -->
-
+    <!-- welcome -->
+    <?php include 'welcome-msg.php' ?>
+    <!-- End welcome -->
+    <br>
     <!-- Card -->
     <div class="container content-space-b-2">
       <div class="w-lg-75 mx-lg-auto">
@@ -285,7 +252,7 @@
 
       <!-- Copyright -->
       <div class="w-md-85 text-lg-center mx-lg-auto">
-        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Mahmud.</p>
+        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Najat</p>
       </div>
       <!-- End Copyright -->
     </div>

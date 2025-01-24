@@ -32,7 +32,7 @@
           <!-- Card -->
           <div class="card">
             <div class="card-header bg-primary text-center">
-              <h4 class="card-header-title text-white">Sign up now to find more information about <span class="badge bg-warning text-dark rounded-pill ms-1">HIV & AIDs</span></h4>
+              <h4 class="card-header-title text-white">Sign up now to find more information about <span class="badge bg-warning text-dark rounded-pill ms-1">Breast Cancer</span></h4>
             </div>
 
             <div class="card-body">
@@ -141,7 +141,7 @@
 
               <div class="row align-items-center">
                 <div class="col-sm-7 mb-3 mb-sm-0">
-                  <p class="card-text small">Already have an account? <a class="link" href="demo-help-desk/login.php">Log In</a></p>
+                  <p class="card-text small">Already have an account? <a class="link" href="login.php">Log In</a></p>
                 </div>
                 <!-- End Col -->
 

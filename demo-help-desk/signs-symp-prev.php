@@ -48,26 +48,14 @@ include 'connection.php';
 
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
-    <!-- Search -->
-    <div class="bg-light" style="background-image: url(../assets/svg/components/wave-pattern-light.svg);">
-      <div class="container py-4">
-        <div class="w-lg-75 mx-lg-auto">
-          <figure>
-              <blockquote class="blockquote blockquote-left-border">
-                <p>Dear <?php echo $_SESSION['emailAddress']; ?>, welcome to</p>
-              </blockquote>
-              <figcaption class="blockquote-footer">
-                <span class="blockquote-footer-source">Breast Cancer awareness<cite title="Source Title">System.</cite></span>
-              </figcaption>
-            </figure>
-        </div>      </div>
-    </div>
-    <!-- End Search -->
-
+    <!-- welcome -->
+    <?php include 'welcome-msg.php' ?>
+    <!-- End welcome -->
+    <br>
     <!-- Card -->
     <div class="container content-space-b-2">
       <div class="w-lg-75 mx-lg-auto">
-        <!-- Card --> <br>
+        <!-- Card -->
         <div class="card card-bordered p-4 p-md-7">
             <h1 class="card-title h2">Signs and Symptoms of Breast Cancer</h1>
             <p>Breast cancer symptoms can range from lumps to swelling to skin changes. <br></p>

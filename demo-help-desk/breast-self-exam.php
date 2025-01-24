@@ -45,28 +45,16 @@ include 'connection.php';
 
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
-    <!-- Search -->
-    <div class="bg-light" style="background-image: url(../assets/svg/components/wave-pattern-light.svg);">
-      <div class="container py-4">
-        <div class="w-lg-75 mx-lg-auto">
-          <figure>
-              <blockquote class="blockquote blockquote-left-border">
-                <p>Dear <?php echo $_SESSION['emailAddress']; ?>, welcome to</p>
-              </blockquote>
-              <figcaption class="blockquote-footer">
-                <span class="blockquote-footer-source">Breast Cancer awareness<cite title="Source Title">System.</cite></span>
-              </figcaption>
-            </figure>
-        </div>      </div>
-    </div>
-    <!-- End Search -->
-
+    <!-- welcome -->
+    <?php include 'welcome-msg.php' ?>
+    <!-- End welcome -->
+    <br>
     <!-- Card -->
     <div class="container content-space-b-2">
       <div class="w-lg-75 mx-lg-auto">
-        <!-- Card --> <br>
+        <!-- Card -->
         <div class="card card-bordered p-4 p-md-7">
-          <h1 class="card-title">Overview of Breast self-exam</h1>          
+          <h1 class="card-title h2">Overview of Breast self-exam</h1>          
           <p>
             A breast self-exam for breast awareness is a check of your breasts that you do on your own. 
             To help increase your breast awareness, you use your eyes and hands to learn if there are any changes to the look and feel of your breasts.

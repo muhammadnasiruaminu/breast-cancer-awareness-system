@@ -1,8 +1,8 @@
 <nav class="navbar-nav-wrap">
         <!-- Default Logo -->
-        <a class="navbar-brand" href="dashboard.php" aria-label="Front">
+        <!-- <a class="navbar-brand" href="dashboard.php" aria-label="Front">
           <img class="navbar-brand-logo" src="../assets/svg/logos/logox.svg" alt="Logo">
-        </a>
+        </a> -->
         <!-- End Default Logo -->
 
         <!-- Toggler -->
@@ -20,6 +20,9 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
+              <img class="navbar-brand-logo" src="../assets/img/b-c-ribbon.png" alt="Logo" height="80" width="70">
+            </li>
+            <li class="nav-item">
               <a class="nav-link " href="dashboard.php">Home Page</a>
             </li>
             <li class="nav-item">
@@ -35,17 +38,20 @@
               <a class="nav-link" href="breast-self-exam.php">BSE</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="self-diagnosis.php">Self Diagnosis</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="questionnaire.php">Questionnaire</a>
             </li>
             <!-- Dropdown  -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Notification</button>
-            </li>
+            </li> -->
             <!-- End Dropdown -->
             
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <button class="btn btn-primary btn-transition" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Ask!</button>
-            </li>
+            </li> -->
 
             <li class="nav-item">
               <a href="logout.php" class="btn btn-secondary">Logout</a>

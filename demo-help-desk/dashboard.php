@@ -85,16 +85,7 @@
 
                 $user_id = $_SESSION['id'];
 
-                $sqlQuery = "SELECT * FROM replyMessage WHERE user_id = '$user_id' AND message = 0";
-                $execute = mysqli_query($conn, $sqlQuery);
-
-                $message = array();
-
-                while ($fetch = mysqli_fetch_assoc($execute)) 
-                {
-                  $message[] = $fetch;
-                }
-                echo json_encode($message);
+                
               ?>
             </div>
           </div>
@@ -112,129 +103,9 @@
       <div class="w-lg-75 mx-lg-auto">
         <!-- Card -->
         <div class="card card-bordered p-4 p-md-7">
-          <h1 class="card-title h2">What's Cancer and it types?</h1>
-          <p class="card-text">How Front works, what it can do for your business and what makes it different to other solutions.</p>
-
-          <!-- Media -->
-          <div class="d-flex mb-5">
-            <div class="flex-shrink-0">
-              <img class="avatar avatar-sm avatar-circle" src="../assets/img/160x160/img9.jpg" alt="Image Description">
-            </div>
-
-            <div class="flex-grow-1 ms-3">
-              <p class="card-text text-dark small mb-0">1 article in this collection</p>
-              <p class="card-text text-dark small">
-                <span class="text-muted">Written by</span>
-                Dr. Salihu Ismail Barde.
-              </p>
-            </div>
-          </div>
-          <!-- End Media -->
-
-          <h3>HIV ans AIDs</h3>
-          <p>HIV is a viral infection that attacks the body's immune system, specifically the CD4 cells(T cells). If left untreated, HIV can lead to AIDs(Acquired Immunodeficiancy Syndrome).</p>
-
-          <h3>HIV</h3>
-          <p>
-            <ul class="list-py-1 list-unstyled list-pointer">
-              <li><span class="fw-semi-bold">Attacks and weakens the immune system.</span></li>
-              <li><span class="fw-semi-bold">Make the body vulnerable to opportunistic infection and diseases.</span></li>
-              <li><span class="fw-semi-bold">Can be transmitted by: </span></li>
-              <li class="list-pointer-item">
-                <span class="link link-secondary" >Unprotected sex with an infected person.</span>
-              </li>
-              <li class="list-pointer-item">
-                <span class="link link-secondary" >Sharing needles or syringes with infected person.</span>
-              </li>
-              <li class="list-pointer-item">
-                <span class="link link-secondary" >Mother-to-child transmission during pregnancy, childbirth, or breastfeeding.</span>
-              </li>
-              <li class="list-pointer-item">
-                <span class="link link-secondary" >Blood transmission fron an infected donor</span>
-              </li>
-            </ul>
-          </p>
-
-          <h3>AIDs</h3>
-          <p>
-            <ul class="list-py-1 list-unstyled list-pointer">
-              <li><span class="fw-semi-bold">The most advanced stage of HIV infection.</span></li>
-              <li><span class="fw-semi-bold">Occurs when the immune the system is severaly damage.</span></li>
-              <li><span class="fw-semi-bold">Characterized by: </span></li>
-              <li class="list-pointer-item">
-                <span class="link link-secondary" >CD4 cell count below 200 cell per cubic millimeter of blood.</span>
-              </li>
-              <li class="list-pointer-item">
-                <span class="link link-secondary" >Presence of specific opportunistic infections or cancers.</span>
-              </li>
-              <li class="list-pointer-item">
-                <span class="link link-secondary" >Severe symptoms such as:</span>
-              </li>
-              <ul>
-                <li>Recurring Fever</li>
-                <li>Fatigue</li>
-                <li>Swollen lymph nodes</li>
-                <li>Weight loss</li>
-                <li>Diarrhea</li>
-                <li>White spots in the mouth(thrush)</li>
-                <li>Red, brown, pink, or purplish blotches on the skin.</li>
-              </ul>
-            </ul>
-          </p>
-
-          <h3>Key differences</h3>
-          <p>
-            <ul>
-              <li>HIV is the virus, while AIDs is the condition caused by the virus.</li>
-              <li>HIV can be manage with treatment, while AIDs is a more advance and sevare stage of the infection.</li>
-            </ul>
-          </p>
-
-          <h3>Prevention and treatment</h3>
-          <p>
-            <ul class="list-py-1 list-unstyled list-pointer">
-              <li>Prevention method include:</li>
-              <li class="list-pointer-item">
-                <span class="link link-secondary" >Safe sex practice.</span>
-              </li>
-
-              <li class="list-pointer-item">
-                <span class="link link-secondary" >Using condom.</span>
-              </li>
-
-              <li class="list-pointer-item">
-                <span class="link link-secondary" >Getting tested regularly.</span>
-              </li>
-
-              <li class="list-pointer-item">
-                <span class="link link-secondary" >Avoid sharing needles or syringes.</span>
-              </li>
-
-              <li class="list-pointer-item">
-                <span class="link link-secondary" >Pre-exposure prophylaxis(PrEP) medication.</span>
-              </li>
-            </ul>
-          </p>
-
-          <!-- Info -->
-          <div class="border-top border-bottom text-center py-7 my-5">
-            <div class="mb-3">
-              <h3>Was this article helpful?</h3>
-            </div>
-
-            <div class="mb-3">
-              <button type="button" class="btn btn-primary my-1 me-sm-2">
-                <i class="bi-hand-thumbs-up me-1"></i> Yes, thanks!
-              </button>
-              <button type="button" class="btn btn-soft-primary my-1">
-                <i class="bi-hand-thumbs-down me-1"></i> Not, really
-              </button>
-            </div>
-
-            <p class="small mb-0">93 out of 132 found this helpful</p>
-          </div>
-          <!-- End Info -->
-
+          <h3>Hey there! </h3>
+          <h3 class="card-title ">Welcome, <?php echo $_SESSION['surname'].' '. $_SESSION['othername']; ?></h3>
+  
         </div>
         <!-- End Card -->
       </div>
@@ -252,7 +123,7 @@
 
       <!-- Copyright -->
       <div class="w-md-85 text-lg-center mx-lg-auto">
-        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Najat</p>
+        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Khady</p>
       </div>
       <!-- End Copyright -->
     </div>

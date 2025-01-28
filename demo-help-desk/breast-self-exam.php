@@ -111,7 +111,7 @@ include 'connection.php';
 
       <!-- Copyright -->
       <div class="w-md-85 text-lg-center mx-lg-auto">
-        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Najat</p>
+        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Khady</p>
       </div>
       <!-- End Copyright -->
     </div>

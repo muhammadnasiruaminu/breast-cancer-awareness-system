@@ -123,13 +123,6 @@ include 'connection.php';
             The healthcare team uses this information to decide what tests you might need next.
           </p>
 
-          <h3>Breast MRI</h3>
-          <p>
-          MRI machines use a magnetic field and radio waves to create pictures of the inside of the body. 
-          A breast MRI can make more-detailed pictures of the breast. Sometimes this method is used to look closely for any other areas of cancer in the affected breast. 
-          It also might be used to look for cancer in the other breast. Before a breast MRI, you usually receive an injection of dye. The dye helps the tissue show up better in the images.
-          </p>
-
           <h3>Removing a sample of breast cells for testing</h3>
           <p>
             A biopsy is a procedure to remove a sample of tissue for testing in a lab. 
@@ -275,7 +268,7 @@ include 'connection.php';
 
       <!-- Copyright -->
       <div class="w-md-85 text-lg-center mx-lg-auto">
-        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Najat</p>
+        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Khady</p>
       </div>
       <!-- End Copyright -->
     </div>

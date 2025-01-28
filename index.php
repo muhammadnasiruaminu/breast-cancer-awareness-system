@@ -66,7 +66,7 @@
       <nav class="navbar-nav-wrap">
         <!-- Default Logo -->
         <a class="navbar-brand" href="index.html" aria-label="Front">
-          <img class="navbar-brand-logo" src="./assets/svg/logos/logoa.svg" alt="Logo">
+          <img class="navbar-brand-logo" src="./assets/img/b-c-ribbon.png" alt="Logo" height="80" width="70">
         </a>
         <!-- End Default Logo -->
 
@@ -85,13 +85,13 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="index.html">Home</a>
+              <a class="nav-link active" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="listing.html">About Breast Cancer</a>
+              <a class="nav-link " href="#">About Breast Cancer</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="article-overview.html">Latest News</a>
+              <a class="nav-link " href="#">Latest News</a>
             </li>
             <li class="nav-item">
               <a class="btn btn-primary btn-transition" href="demo-help-desk/login.php">Log in</a>
@@ -179,9 +179,9 @@
                 <div class="col-sm-6">
                   <!-- Form -->
                   <div class="mb-4">
-                    <label class="form-label" for="signupHeroFormFirstName">First name:</label>
-                    <input type="text" class="form-control form-control-lg" name="firstName" id="signupHeroFormFirstName" placeholder="First name" aria-label="First name" required>
-                    <span class="invalid-feedback">Please enter your first name</span>
+                    <label class="form-label" for="signupHeroFormFirstName">Surname:</label>
+                    <input type="text" class="form-control form-control-lg" name="firstName" id="signupHeroFormFirstName" placeholder="Surname" aria-label="Surname" required>
+                    <span class="invalid-feedback">Please enter your Surname</span>
                   </div>
                   <!-- End Form -->
                 </div>
@@ -214,7 +214,7 @@
                   <div class="mb-4">
                     <label class="form-label" for="signupHeroFormFirstName">Phone number:</label>
                     <input type="text" class="form-control form-control-lg" name="phoneNumber" id="signupHeroFormFirstName" aria-label="First name" required>
-                    <span class="invalid-feedback">Please enter your first name</span>
+                    <span class="invalid-feedback">Please enter your Surname</span>
                   </div>
                   <!-- End Form -->
                 </div>
@@ -312,7 +312,7 @@
 
       <!-- Copyright -->
       <div class="w-md-85 text-lg-center mx-lg-auto">
-        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Najat</p>
+        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Khady</p>
       </div>
       <!-- End Copyright -->
     </div>

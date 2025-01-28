@@ -20,29 +20,11 @@ include 'connection.php';
   }
 
     
-  // mysql_select_db($database_config, $config);
-
-  // $query_Recordset1 = "SELECT * FROM disease";
-
-  // $Recordset1 = mysql_query($query_Recordset1, $config) or die(mysql_error());
-
-  // $row_Recordset1 = mysql_fetch_assoc($Recordset1);
-
-  // $totalRows_Recordset1 = mysql_num_rows($Recordset1);
+ 
   $sqlQuery2 = "SELECT * FROM disease";
   $result2 = mysqli_query($conn, $sqlQuery2);
-  // if ($result){
-  //   echo 'yes sdds'; print_r($result);
-  //   exit;
-  // }
-  // if (mysqli_num_rows($result) > 0) {
-  //   $row = mysqli_fetch_assoc($result);
-  //   // echo 'yes sdds'; print_r($row);
-  //   //  echo $row['id']; exit;
-
-  // }
+  
   $row_Recordset1 = mysqli_fetch_assoc($result2);
-  // print_r($row_Recordset1); exit;
 
 ?>
 
@@ -86,32 +68,24 @@ include 'connection.php';
 
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
-    <!-- Search -->
-    <div class="bg-light" style="background-image: url(../assets/svg/components/wave-pattern-light.svg);">
-      <div class="container py-4">
-        <div class="w-lg-75 mx-lg-auto">
-          <figure>
-              <blockquote class="blockquote blockquote-left-border">
-                <p>Dear <?php echo $_SESSION['emailAddress']; ?>, welcome to</p>
-              </blockquote>
-              <figcaption class="blockquote-footer">
-                <span class="blockquote-footer-source">Breast Cancer awareness<cite title="Source Title">System.</cite></span>
-              </figcaption>
-            </figure>
-        </div>      </div>
-    </div>
-    <!-- End Search -->
+    <!-- welcome -->
+    <?php include 'welcome-msg.php' ?>
+    <!-- End welcome -->
 
     <!-- Card -->
     <div class="container content-space-b-2">
       <div class="w-lg-75 mx-lg-auto">
         <!-- Card --> <br>
         <div class="card card-bordered p-4 p-md-7">
+          <div class="right">
+            <a href="history.php" class="active">Test History</a>
+          </div>
           <h1 class="card-title h2">Diagnosis</h1>
+         
           <p class="card-text">You can thick any of the questions applicable to you in other to know if you are at risk of contacting the disease.</p>
           
           <ul class="list-py-1">
-            <form method="POST">
+            <form action="member_d_pro.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
               <?php do { ?>
                 <li>
                   <input type="checkbox" value="<?php echo $row_Recordset1['disease']; ?>" name="<?php echo $row_Recordset1['status']; ?>" id="checkbox" />
@@ -119,9 +93,8 @@ include 'connection.php';
                 </li>
               <?php } while ($row_Recordset1 = mysqli_fetch_assoc($result2)); ?>
             
-              <input type="submit" class="btn btn-secondary mt-3" name="button" id="button" value="Diagnose" />
+              <input type="submit" class="btn btn-primary mt-3" name="button" id="button" value="Diagnose" />
 
-              <button class="btn btn-secondary mt-3" name="submit">submit</button>
             </form>
             
           </ul>
@@ -143,7 +116,7 @@ include 'connection.php';
 
       <!-- Copyright -->
       <div class="w-md-85 text-lg-center mx-lg-auto">
-        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Najat</p>
+        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Khady</p>
       </div>
       <!-- End Copyright -->
     </div>

@@ -2,30 +2,112 @@
 session_start();
 include 'connection.php';
 
-  if (isset($_POST['submit'])) {
-    $id = $_SESSION['id'];
-    $gender = $_POST['gender'];
-    $needles = $_POST['needles'];
-    $condom = $_POST['condom'];
-    $sexTransmitted = $_POST['sexTransmitted'];
-    $bloodTransmitted = $_POST['bloodTransmitted'];
-    $bloodScreened = $_POST['bloodScreened'];
+//initialize the session
+if (!isset($_SESSION)) {
+  session_start();
+}
 
-      $sqlQuery = "INSERT INTO questionnaire(`user_id`, `gender`, `usedOfNeedles`, `useOfCondom`, `transmittedDisease`, `bloodTransmission`, `bloodScreened`) VALUES('$id', '$gender', '$needles', '$condom', '$sexTransmitted', '$bloodTransmitted', '$bloodScreened')";
-      $result = mysqli_query($conn, $sqlQuery);
+// ** Logout the current user. **
+$logoutAction = $_SERVER['PHP_SELF']."?doLogout=true";
+if ((isset($_SERVER['QUERY_STRING'])) && ($_SERVER['QUERY_STRING'] != "")){
+  $logoutAction .="&". htmlentities($_SERVER['QUERY_STRING']);
+}
 
-      if ($result) {
-        header('Location: dashboard.php?sussess=Question Successfully submitted');
+if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
+  //to fully log out a visitor we need to clear the session varialbles
+  $_SESSION['MM_Username'] = NULL;
+  $_SESSION['MM_UserGroup'] = NULL;
+  $_SESSION['PrevUrl'] = NULL;
+  unset($_SESSION['MM_Username']);
+  unset($_SESSION['MM_UserGroup']);
+  unset($_SESSION['PrevUrl']);
+	
+  $logoutGoTo = "index.php";
+  if ($logoutGoTo) {
+    header("Location: $logoutGoTo");
+    exit;
+  }
+}
+
+
+  if (!function_exists("GetSQLValueString")) {
+    function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+    {
+      if (PHP_VERSION < 6) {
+        $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
       }
+
+      $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+      switch ($theType) {
+        case "text":
+          $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+          break;    
+        case "long":
+        case "int":
+          $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+          break;
+        case "double":
+          $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+          break;
+        case "date":
+          $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+          break;
+        case "defined":
+          $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+          break;
+      }
+      return $theValue;
+    }
   }
 
-  $sqlQuery2 = "SELECT * FROM disease";
-  $result2 = mysqli_query($conn, $sqlQuery2);
+    // mysql_select_db($db, $conn);
+    $query_Recordset1 = "SELECT * FROM disease";
+    $Recordset1 = mysqli_query($conn, $query_Recordset1) or die(mysqli_error());
+    $row_Recordset1 = mysqli_fetch_assoc($Recordset1);
+    $totalRows_Recordset1 = mysqli_num_rows($Recordset1);
+    $colname_re = "-1";
+    if (isset($_SESSION['username'])) {
+      $colname_re = $_SESSION['username'];
+    }
 
-  $row_Recordset1 = mysqli_fetch_assoc($result2);
+    $username = $_SESSION['username'];
+
+    mysqli_select_db($conn, $db);
+    $query_re = "SELECT * FROM users WHERE username = '$username'";
+    $re = mysqli_query($conn, $query_re) or die(mysqli_error());
+    $row_re = mysqli_fetch_assoc($re);
+    $totalRows_re = mysqli_num_rows($re);
+// echo $username;exit;
+    // $colname_disease = "-1";
+    // if (isset($_SESSION['disease'])) {
+    //   $colname_disease = $_SESSION['disease'];
+    // } 
+    $disease = $_SESSION['disease'];
+    mysqli_select_db($conn, $db);
+    $query_disease = "SELECT * FROM treatment WHERE disease = '$disease'";
+    $disease = mysqli_query($conn, $query_disease) or die(mysqli_error());
+    $row_disease = mysqli_fetch_assoc($disease);
+    $totalRows_disease = mysqli_num_rows($disease);
+
+
+    $_SESSION['disease'] = $row_disease['disease']; 
+    $_SESSION['treatment'] = $row_disease['treatment'];
+    $_SESSION['medication'] = $row_disease['medication']; 
+    $_SESSION['username'] = $_SESSION['username'];
+    // $_SESSION['password'] = $_SESSION['password'];
+    $disease = $_SESSION['disease'];
+    $treatment = $_SESSION['treatment'];
+    $medication = $_SESSION['medication'];
+    $password = $_SESSION['password'];
+    $username = $_SESSION['username'];
+
+    $sql = "INSERT IGNORE INTO users_test(username,password,disease,treatment,medication) values('$username','$password','$disease','$treatment','$medication')";
+    mysqli_query($conn, $sql);
+
+
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en" dir="">
@@ -37,7 +119,7 @@ include 'connection.php';
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title -->
-  <title>Breast Cancer Risk Assessment</title>
+  <title>All about Breast Cancer</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="../favicon.ico">
@@ -51,39 +133,12 @@ include 'connection.php';
 
   <!-- CSS Front Template -->
   <link rel="stylesheet" href="../assets/css/theme.minc619.css?v=1.0">
-
-  <style>
-    /* body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    } */
-    /* .question {
-      margin-bottom: 20px;
-    } */
-    .result {
-      margin-top: 20px;
-      padding: 15px;
-      border: 1px solid #ddd;
-      background-color: #f9f9f9;
-    }
-    .hidden {
-      display: none;
-    }
-    .progress {
-      margin-bottom: 20px;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 10px;
-    }
-  </style>
-  
 </head>
 
 <body>
   <!-- ========== HEADER ========== -->
   <header id="header" class="navbar navbar-expand-lg navbar-end navbar-light bg-white">
-    <!-- Topbar -->
+
     <div class="container">
        <?php include 'header-nav.php' ?>
     </div>
@@ -93,88 +148,33 @@ include 'connection.php';
 
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
-    <!-- Search -->
+    <!-- welcome -->
     <?php include 'welcome-msg.php' ?>
-    <!-- End Search -->
-    <br>
+    <!-- End welcome -->
+
     <!-- Card -->
     <div class="container content-space-b-2">
       <div class="w-lg-75 mx-lg-auto">
-        <!-- Card -->
+        <!-- Card --> <br>
         <div class="card card-bordered p-4 p-md-7">
-        <h1 class="card-title h2">Breast Cancer Awareness Tool</h1>
-          <p>Answer the following questions to assess your risk and receive personalized prevention tips.</p>
-
-          <!-- Progress Tracker -->
-          <div class="progressm">
-            Progress: <span id="currentStep">1</span>/<span id="totalSteps">8</span>
+        <div class="right">
+            <a href="self-diagnosis.php" class="active">Diagnosis</a>
           </div>
+          <h1 class="card-title h2">Diagnosis Result</h1>
+         <?php echo "Dear ".$row_re['surname']; ?>
+          
+         <?php echo $row_re['othername']; ?>
 
-          <form id="riskForm">
-            <!-- Questions -->
-            <div id="step-1" class="question">
-              <label>What is your age?</label><br>
-              <input type="radio" name="age" value="0"> Under 40<br>
-              <input type="radio" name="age" value="1"> 40-49<br>
-              <input type="radio" name="age" value="2"> 50+
-            </div>
-
-            <div id="step-2" class="question hidden">
-              <label>Have you reached menopause?</label><br>
-              <input type="radio" name="menopause" value="0"> No<br>
-              <input type="radio" name="menopause" value="1"> Yes
-            </div>
-
-            <div id="step-3" class="question hidden">
-              <label>Do you have a first-degree relative diagnosed with breast cancer?</label><br>
-              <input type="radio" name="familyHistory" value="3"> Yes<br>
-              <input type="radio" name="familyHistory" value="0"> No
-            </div>
-
-            <div id="step-4" class="question hidden">
-              <label>Is there a history of ovarian cancer in your family?</label><br>
-              <input type="radio" name="ovarianHistory" value="3"> Yes<br>
-              <input type="radio" name="ovarianHistory" value="0"> No
-            </div>
-
-            <div id="step-5" class="question hidden">
-              <label>Do you exercise regularly (at least 150 minutes per week)?</label><br>
-              <input type="radio" name="exercise" value="-1"> Yes<br>
-              <input type="radio" name="exercise" value="0"> No
-            </div>
-
-            <div id="step-6" class="question hidden">
-              <label>Do you consume alcohol regularly?</label><br>
-              <input type="radio" name="alcohol" value="1"> Yes<br>
-              <input type="radio" name="alcohol" value="0"> No
-            </div>
-
-            <div id="step-7" class="question hidden">
-              <label>Have you noticed unusual changes in your breasts (e.g., lumps, pain, or discharge)?</label><br>
-              <input type="radio" name="symptoms" value="2"> Yes<br>
-              <input type="radio" name="symptoms" value="0"> No
-            </div>
-
-            <div id="step-8" class="question hidden">
-              <label>Have you undergone hormone replacement therapy?</label><br>
-              <input type="radio" name="hormoneTherapy" value="2"> Yes<br>
-              <input type="radio" name="hormoneTherapy" value="0"> No
-            </div>
-
-            <!-- Navigation Buttons -->
-            <div>
-              <button type="button" id="prevButton" class="btn btn-primary hidden" onclick="prevStep()">Previous</button>
-              <button type="button" class="btn btn-primary" id="nextButton" onclick="nextStep()">Next</button>
-            </div>
-          </form>
-
-          <!-- Results Section -->
-          <div id="result" class="result hidden">
-            <h2>Your Results</h2>
-            <p id="riskLevel"></p>
-            <p id="recommendations"></p>
-            <p><strong>Note:</strong> This tool provides general guidance. Always consult a healthcare professional for a detailed evaluation.</p>
-          </div>
+          <table class="table table-bordered" >
+            <tr>
+              <td >Disease:</td>
+              <td width="" ><?php echo $row_disease['disease']; ?></td>
+            </tr>
+            <tr>
+              <td>Treatment/Medication:</td>
+              <td ><?php echo $row_disease['treatment']; ?></td>
+            </tr>
+          </table>
 
         </div>
         <!-- End Card -->
@@ -434,87 +434,6 @@ include 'connection.php';
       new HSGoTo('.js-go-to')
     })()
   </script>
-
-<script>
-    let currentStep = 1;
-    const totalSteps = 8;
-
-    // Update progress display
-    function updateProgress() {
-      document.getElementById("currentStep").innerText = currentStep;
-      document.getElementById("totalSteps").innerText = totalSteps;
-    }
-
-    // Show the next question
-    function nextStep() {
-      if (currentStep < totalSteps) {
-        document.getElementById(`step-${currentStep}`).classList.add("hidden");
-        currentStep++;
-        document.getElementById(`step-${currentStep}`).classList.remove("hidden");
-        document.getElementById("prevButton").classList.remove("hidden");
-      }
-
-      if (currentStep === totalSteps) {
-        document.getElementById("nextButton").innerText = "Submit";
-        document.getElementById("nextButton").onclick = calculateRisk;
-      }
-      updateProgress();
-    }
-
-    // Show the previous question
-    function prevStep() {
-      if (currentStep > 1) {
-        document.getElementById(`step-${currentStep}`).classList.add("hidden");
-        currentStep--;
-        document.getElementById(`step-${currentStep}`).classList.remove("hidden");
-      }
-
-      if (currentStep === 1) {
-        document.getElementById("prevButton").classList.add("hidden");
-      }
-      document.getElementById("nextButton").innerText = "Next";
-      document.getElementById("nextButton").onclick = nextStep;
-
-      updateProgress();
-    }
-
-    // Calculate risk and show results
-    function calculateRisk() {
-      let score = 0;
-      const form = document.forms["riskForm"];
-
-      // Collect all inputs
-      score += parseInt(form["age"].value || 0);
-      score += parseInt(form["menopause"].value || 0);
-      score += parseInt(form["familyHistory"].value || 0);
-      score += parseInt(form["ovarianHistory"].value || 0);
-      score += parseInt(form["exercise"].value || 0);
-      score += parseInt(form["alcohol"].value || 0);
-      score += parseInt(form["symptoms"].value || 0);
-      score += parseInt(form["hormoneTherapy"].value || 0);
-
-      // Display results
-      const resultDiv = document.getElementById("result");
-      const riskLevel = document.getElementById("riskLevel");
-      const recommendations = document.getElementById("recommendations");
-
-      if (score <= 3) {
-        riskLevel.innerText = "Your risk is LOW.";
-        recommendations.innerText = "Maintain a healthy lifestyle and stay informed about breast health.";
-      } else if (score <= 6) {
-        riskLevel.innerText = "Your risk is MODERATE.";
-        recommendations.innerText = "Schedule regular screenings and consider lifestyle changes.";
-      } else {
-        riskLevel.innerText = "Your risk is HIGH.";
-        recommendations.innerText = "Consult a healthcare provider for genetic testing or preventive strategies.";
-      }
-
-      resultDiv.classList.remove("hidden");
-      document.getElementById("riskForm").classList.add("hidden");
-      updateProgress();
-    }
-  </script>
-
 </body>
 
 <!-- Mirrored from htmlstream.com/preview/front-v4.2/html/demo-help-desk/article-overview.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 02 Aug 2022 18:21:26 GMT -->

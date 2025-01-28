@@ -40,8 +40,8 @@
                 <div class="col-sm-6">
                   <!-- Form -->
                   <div class="mb-4">
-                    <label class="form-label" for="signupHeroFormFirstName">First name:</label>
-                    <input type="text" class="form-control form-control-lg" name="firstName" id="signupHeroFormFirstName" placeholder="First name" aria-label="First name" required>
+                    <label class="form-label" for="signupHeroFormFirstName">Surname:</label>
+                    <input type="text" class="form-control form-control-lg" name="firstName" id="signupHeroFormFirstName" placeholder="Surname" aria-label="Surname" required>
                     <span class="invalid-feedback">Please enter your first name</span>
                   </div>
                   <!-- End Form -->

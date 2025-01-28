@@ -94,9 +94,7 @@ include 'connection.php';
           A breast cancer's type is determined by the specific cells in the breast that
           become cancer.
           </p>
-          <h3>Ductal or lobular carcinoma</h3>
-          <h3>Less common types of breast cancer</h3>
-          <br>
+          
           <h5>Ductal or lobular carcinoma</h5>
           <p>
             Most breast cancers are carcinomas, which are tumors that start in the epithelial cells
@@ -149,36 +147,6 @@ include 'connection.php';
           rare and accounts for about 1% to 5% of all breast cancers.
           </p>
 
-          <h5>Less common types of breast cancer</h5>
-          <p>
-          There are other types of breast cancers that start to grow in other types of cells in the
-          breast. These cancers are much less common, and sometimes need different types of
-          treatment.
-          </p>
-
-          <h5>Paget disease of the breast</h5>
-          <p>
-          Paget disease of the breast is rare, accounting for only about 1-3% of all cases of
-          breast cancer. It starts in the breast ducts and spreads to the skin of the nipple and
-          then to the areola (the dark circle around the nipple).
-          </p>
-
-          <h5>Angiosarcoma</h5>
-          <p>
-          Sarcomas of the breast are rare making up less than 1% of all breast
-          cancers. Angiosarcoma starts in cells that line blood vessels or lymph vessels. It can
-          involve the breast tissue or the skin of the breast. Some may be related to prior
-          radiation therapy in that area.
-          </p>
-
-          <h5>Phyllodes tumor</h5>
-          <p>
-          Phyllodes tumors are rare breast tumors. They develop in the connective tissue
-          (stroma) of the breast, in contrast to carcinomas, which develop in the ducts or lobules.
-          Most are benign, but there are others that are malignant (cancer).
-          </p>
-
-
           
         </div>
         <!-- End Card -->
@@ -197,7 +165,7 @@ include 'connection.php';
 
       <!-- Copyright -->
       <div class="w-md-85 text-lg-center mx-lg-auto">
-        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Najat</p>
+        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Khady</p>
       </div>
       <!-- End Copyright -->
     </div>

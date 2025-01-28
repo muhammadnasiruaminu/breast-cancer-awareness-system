@@ -43,15 +43,17 @@
 
     		if (mysqli_num_rows($result) === 1) {
           $row = mysqli_fetch_assoc($result);
+          // print_r($row); exit;
           if ($row['email'] === $emailAddress && $row['password'] === $password) {
             $_SESSION['id'] = $row['id'];
             $_SESSION['emailAddress'] = $row['email'];
-            $_SESSION['firstname'] = $row['first_name'];
-            $_SESSION['otherName'] = $row['other_name'];
-            $_SESSION['phoneNumber'] = $row['phone_number'];
-            $_SESSION['age'] = $row['age'];
-            $_SESSION['gender'] = $row['gender'];
-
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['surname'] = $row['surname'];
+            $_SESSION['othername'] = $row['othername'];
+            // $_SESSION['phoneNumber'] = $row['phone_number'];
+            // $_SESSION['age'] = $row['age'];
+            // $_SESSION['gender'] = $row['gender'];
+// echo $_SESSION['surname']; exit;
             header('Location: dashboard.php');
             exit();
 

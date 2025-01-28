@@ -3,8 +3,6 @@ session_start();
 include 'connection.php';
 
 
-    
- 
 ?>
 
 
@@ -81,7 +79,6 @@ include 'connection.php';
                     
              <p>These changes also can be signs of less serious conditions, such as an infection or a cyst.</p>
 
-
              <h3>Breast pain</h3>
              <p>
                 Although pain is not a common symptom of early breast cancer, a tumor can cause pain if it pushes into nearby healthy tissue. 
@@ -149,27 +146,7 @@ include 'connection.php';
 
             <p> <font size="4" font color="black"><span ><b><i> > Certain Breast Changes: </i></b></span></font> If you've been diagnosed with certain benign (not cancer) breast conditions, you may have a higher risk of breast cancer.</p>
 
-            <p> <font size="4" font color="black"><span ><b><i> > Race/Ethnicity: </i></b></span></font> White women are slightly more likely to develop breast cancer than Black, Hispanic, and Asian women. But Black women are more likely to develop more aggressive, more advanced-stage breast cancer diagnosed at a young age.</p>
-           
-            <p> <font size="4" font color="black"><span ><b><i> > Being Overweight: </i></b></span></font> Overweight and obese women have a higher risk of being diagnosed with breast cancer compared to women who maintain a healthy weight, especially after menopause.</p>
-          
-            <p> <font size="4" font color="black"><span ><b><i> > Pregnancy History: </i></b></span></font> Your age when you give birth to your first child and the number of times you've given birth — including if you've never had a full-term pregnancy — can affect your risk of developing breast cancer.</p>
-          
-            <p> <font size="4" font color="black"><span ><b><i> > Breastfeeding History: </i></b></span></font> Breastfeeding can lower breast cancer risk, especially if you breastfeed for longer than one year.</p>
-
-            <p> <font size="4" font color="black"><span ><b><i> > Menstrual History: </i></b></span></font> Women who had their first period before they turned 12 have a higher risk of breast cancer later in life.</p>
-
-            <p> <font size="4" font color="black"><span ><b><i> > Using HRT (Hormone Replacement Therapy): </i></b></span></font> Some types of HRT can increase your risk of breast cancer.</p>
-
-            <p> <font size="4" font color="black"><span ><b><i> > Drinking Alcohol: </i></b></span></font> Research shows that drinking alcoholic beverages of any kind increases a woman's risk of hormone receptor-positive breast cancer.</p>
-
-            <p> <font size="4" font color="black"><span ><b><i> > Dense Breasts: </i></b></span></font> Women with dense breasts have a higher risk of developing breast cancer.</p>
-
-            <p> <font size="4" font color="black"><span ><b><i> > Lack of Exercise: </i></b></span></font> Research shows a link between exercising regularly at a moderate or intense level for four to seven hours per week and a lower risk of breast cancer.</p>
-
-            <p> <font size="4" font color="black"><span ><b><i> > Smoking: </i></b></span></font> Smoking is linked to a higher risk of breast cancer in younger, pre-menopausal women</p>
-
-
+            
           </div>
         <br>
         <div class="card card-bordered p-4 p-md-7">
@@ -215,7 +192,7 @@ include 'connection.php';
 
       <!-- Copyright -->
       <div class="w-md-85 text-lg-center mx-lg-auto">
-        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Najat</p>
+        <p class="text-white-50 small">Made with <strong class="text text-danger">&#10083</strong> by Khady</p>
       </div>
       <!-- End Copyright -->
     </div>
